@@ -113,34 +113,30 @@
             </p>
           </div>
         </div>
-        {% for wine_category in wines_inf %}
+        {% for category_of_wine, wines_in_category in categories_of_wine.items() %}
           <div class="row">
             <div class="col-12 section-title text-center mb-5">
-              <h2 class="d-block">{{wine_category}}</h2>
+              <h2 class="d-block">{{category_of_wine}}</h2>
               <p>
               </p>
             </div>
           </div>
           <div class="row">
-            {% for inf_of_wine in wines_inf[wine_category] %}
+            {% for wine_in_category in wines_in_category %}
               <div class="col-lg-4 mb-5 col-md-6">
                 <div class="wine_v_1 text-center pb-4 pt-5">
-                  <img src="images/{{inf_of_wine.Картинка}}" alt="Image" class="img-fluid">
-                  {% if inf_of_wine.Акция %}
+                  <img src="images/{{wine_in_category.Картинка}}" alt="Image" class="img-fluid">
+                  {% if wine_in_category.Акция %}
                     <img src="assets/profitable.png" style="width:10rem;height: 10rem;position:absolute;right: -20px;top: -20px;">
                   {% endif %}
                   <div>
-                    <h3 class="heading mt-3 mb-3 text-dark">{{inf_of_wine.Название}}</h3>
-                    {% if inf_of_wine.Сорт %}
+                    <h3 class="heading mt-3 mb-3 text-dark">{{wine_in_category.Название}}</h3>
                       <p>
-                        Сорт винограда - {{inf_of_wine.Сорт}}<br/>
-                        <span class="price">{{inf_of_wine.Цена}} р.</span>
+                        {% if wine_in_category.Сорт %}
+                        Сорт винограда - {{wine_in_category.Сорт}}<br/>
+                        {% endif %}
+                        <span class="price">{{wine_in_category.Цена}} р.</span>
                       </p>
-                    {% else %}
-                      <p>
-                        <span class="price">{{inf_of_wine.Цена}} р.</span>
-                      </p>
-                    {% endif %}
                   </div>
                 </div>
               </div>
